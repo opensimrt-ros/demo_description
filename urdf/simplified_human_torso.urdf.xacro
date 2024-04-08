@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<robot xmlns:xacro="http://ros.org/wiki/xacro" name="model_generic">
+	<xacro:include filename="$(find demo_description)/urdf/torso.urdf.xacro" />
+	<xacro:include filename="$(find demo_description)/urdf/mug.urdf.xacro" />
+	<xacro:include filename="$(find brio_cam)/urdf/brio_cam.urdf.xacro" />
+	<xacro:brio_cam parent="ground" origin="0 -0.1 0.3" />
+	<xacro:a_mug parent="ground" origin="0 0.0 0.2" />
+	<!--xacro:a_torso parent="torso" origin="0 -0.1 0.3" / -->
+	<xacro:a_torso prefix="ar/" />
+
+</robot>
+

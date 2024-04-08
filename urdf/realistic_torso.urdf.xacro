@@ -1,0 +1,76 @@
+<?xml version="1.0" ?>
+
+<robot name="model_generic" xmlns:xacro="http://www.ros.org/wiki/xacro"> 
+	<xacro:macro name="a_torso" params="prefix:='' ">
+
+		<link name="ground"/>
+		<link name="${prefix}thorax"> 
+
+			<visual> 
+				<origin xyz="0 0.0 -0.2" rpy="1.9 3.14 0 " /> 
+				<geometry> 
+					<mesh filename="package://demo_description/urdf/stl/r_thorax_centered.stl" scale = "0.03 0.03 0.03"/> 
+				</geometry> 
+				<material name="skel">
+					<color rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+				</material>
+			</visual> 
+
+
+		</link> 
+		<link name="${prefix}humerus"> 
+
+			<visual> 
+				<origin xyz="-0.1 0 0.0" rpy="-1.57 1.57 1.57" /> 
+				<geometry> 
+					 <mesh filename="package://demo_description/urdf/stl/r_humerus_centered.stl" scale = "0.03 0.03 0.03"/> 
+				</geometry> 
+				<material name="skel">
+					<color rgba="0.0792156862745098 0.0819607843137255 0.933333333333333 1" />
+				</material>
+			</visual> 
+
+
+		</link> 
+		<link name="${prefix}radius"> 
+
+			<visual name="lowerarm"> 
+				<origin xyz="-0.10 0 0.0" rpy="-1.57 1.57 1.57" /> 
+				<geometry> 
+					 <mesh filename="package://demo_description/urdf/stl/r_lowerarm_centered.stl" scale = "0.03 0.03 0.03"/> 
+				</geometry> 
+				<material name="skel">
+					<color rgba="0.0792156862745098 0.819607843137255 0.0933333333333333 1" />
+				</material>
+			</visual> 
+			<visual name="hand"> 
+				<origin xyz="0.1 0.03 0.0" rpy="-1.57 1.57 1.57 " /> 
+				<geometry> 
+					 <mesh filename="package://demo_description/urdf/stl/r_hand_centered.stl" scale = "0.03 0.03 0.03"/> 
+				</geometry> 
+				<material name="skel">
+					<color rgba="0.0792156862745098 0.819607843137255 0.0933333333333333 1" />
+				</material>
+			</visual> 
+
+		</link> 
+    <joint name="ground_torso" type="floating"> 
+        <origin xyz=" 0.00000000  0.00000000  0.00000000" rpy="0 0 0" /> 
+        <parent link="ground"/> 
+	<child link="${prefix}thorax"/> 
+    </joint> 
+    <joint name="shoulder" type="floating"> 
+        <origin xyz=" 0.00000000  0.00000000  0.00000000" rpy="0 0 0" /> 
+	<parent link="${prefix}thorax"/> 
+	<child link="${prefix}humerus"/> 
+    </joint> 
+    <joint name="elbow" type="floating"> 
+        <origin xyz=" 0.00000000  0.00000000  0.00000000" rpy="0 0 0" /> 
+	<parent link="${prefix}humerus"/> 
+	<child link="${prefix}radius"/> 
+    </joint> 
+
+
+
+	</xacro:macro>
+</robot>

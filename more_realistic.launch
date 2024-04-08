@@ -1,0 +1,10 @@
+<launch>
+    <param name="robot_description" command="$(find xacro)/xacro $(find demo_description)/urdf/realistic_human_torso.urdf.xacro" />
+    <!-- node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" / -->
+    <!-- in my understanding i shouldnt need this...-->
+	<node pkg="tf" type="static_transform_publisher" name="usb_came_brio_link_broadcaster" args="0 0 0 0 0 0 camera_link usb_cam_brio 100" />
+	<node pkg="tf" type="static_transform_publisher" name="ppz" args="0 2 0 0 0 0 map ground 100" />
+
+    <node name="rviz" pkg="rviz" type="rviz" args="-d $(find demo_description)/demo_realistic_mug.rviz" required="true" />
+</launch>
+
